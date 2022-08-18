@@ -3,13 +3,13 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum HttpMessage {
-    HttpReading {
+    Reading {
         reading: Vec<i16>,
         time: std::time::SystemTime,
         uuid: u16,
         battery_level: f32,
     },
-    HttpAck,
+    Ack,
     Error {
         error: String,
         time: std::time::SystemTime,
@@ -21,8 +21,8 @@ impl HttpMessage {
         postcard::to_allocvec(self).expect("serialization should never fail")
     }
     pub fn deserialize(bytes: &[u8]) -> Result<Self> {
-        let data = postcard::from_bytes(bytes)?;
         // let data = ron::de::from_bytes(bytes)?;
+        let data = postcard::from_bytes(bytes)?;
         Ok(data)
     }
 }
@@ -30,7 +30,7 @@ impl HttpMessage {
 #[test]
 fn serialization() {
     // let bytes = HttpMessage::Error.serialize();
-    let bytes = HttpMessage::HttpReading {
+    let bytes = HttpMessage::Reading {
         reading: vec![0, 1, 4, 9],
         time: std::time::SystemTime::now(),
         uuid: 5,

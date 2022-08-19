@@ -14,6 +14,10 @@ pub enum HttpMessage {
         error: String,
         time: std::time::SystemTime,
     },
+    Status {
+        status: String,
+        time: std::time::SystemTime,
+    }
 }
 pub fn serialize(messages: &[HttpMessage]) -> Vec<u8> {
     // ron::ser::to_string(self).expect("serialization should never fail").into()

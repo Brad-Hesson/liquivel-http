@@ -15,6 +15,9 @@ pub enum HttpMessage {
     Status {
         status: String,
         time: std::time::SystemTime,
+    },
+    SetHibernateTime{
+        ms: u32
     }
 }
 pub fn serialize(messages: &[HttpMessage]) -> Vec<u8> {

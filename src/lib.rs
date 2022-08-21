@@ -18,6 +18,9 @@ pub enum HttpMessage {
     },
     SetHibernateTime{
         ms: u32
+    },
+    SetNumReadings{
+        num: u32
     }
 }
 pub fn serialize(messages: &[HttpMessage]) -> Vec<u8> {

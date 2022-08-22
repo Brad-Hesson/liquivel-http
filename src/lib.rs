@@ -4,11 +4,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HttpPacket {
     pub time: std::time::SystemTime,
-    pub uuid: u32,
+    pub uuid: u64,
     pub message: HttpMessage,
 }
 impl HttpPacket {
-    pub fn new(uuid: u32, message: HttpMessage) -> Self {
+    pub fn new(uuid: u64, message: HttpMessage) -> Self {
         Self {
             time: std::time::SystemTime::now(),
             uuid,

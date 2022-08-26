@@ -25,6 +25,11 @@ pub enum HttpMessage {
     Status(String),
     SetHibernateTime(u32),
     SetNumReadings(u32),
+    FirmwareVersion([u8; 32]),
+    Update,
+    ElfRequest(u32),
+    ElfData(Vec<u8>),
+    ElfDone,
 }
 pub fn serialize(messages: &[HttpPacket]) -> Vec<u8> {
     // ron::ser::to_string(self).expect("serialization should never fail").into()
